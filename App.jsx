@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import 'react-native-gesture-handler';
 import AppNavigator from './src/Naivgation/AppNavigator';
 
 const App = () => {

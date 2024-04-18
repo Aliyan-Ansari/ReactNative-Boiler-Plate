@@ -1,28 +1,46 @@
 // AppNavigator.js
-import React, {useContext} from 'react';
+import React from 'react';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
 // import { AuthContext } from './AuthContext';
-import LoginScreen from './../Screens/Login/Login';
-import SignupScreen from './../Screens/Register/Register';
-// import DashboardScreen from './screens/DashboardScreen';
+import {stackScreens} from '../constants/TabScreen';
+import DrawerNavigation from './DrawerNavigation';
 
-const Stack = createStackNavigator();
+const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
   //   const { user } = useContext(AuthContext);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Login">
-        {/* {user ? ( */}
-        {/* //   <Stack.Screen name="Dashboard" component={DashboardScreen} /> */}
-        {/* ) : ( */}
-        <>
-          <Stack.Screen name="Login" component={LoginScreen} />
-          <Stack.Screen name="Signup" component={SignupScreen} />
-        </>
-        {/* )} */}
+      <Stack.Navigator
+        initialRouteName="Login"
+        screenOptions={{
+          // headerShown: false,
+          animation: 'none',
+        }}>
+        {stackScreens.map((stack, index) => (
+          <Stack.Screen
+            name={stack.name}
+            component={stack.component}
+            key={`${stack.name},${index}`}
+            options={
+              stack.title
+                ? {
+                    title: stack.title,
+                    fontFamily: 'Rubik-Medium',
+                    headerShown: true,
+                    headerStyle: {
+                      fontFamily: 'Rubik-Medium',
+                      // backgroundColor: isDarkMode ? '#010101' : '#FFFFFF', // Change header background color based on isDarkMode
+                    },
+                    // headerTintColor: isDarkMode ? '#FFFFFF' : '#000000', // Change header text color based on isDarkMode
+                  }
+                : {}
+            }
+          />
+        ))}
+        <Stack.Screen name="Home" component={DrawerNavigation} />
       </Stack.Navigator>
     </NavigationContainer>
   );

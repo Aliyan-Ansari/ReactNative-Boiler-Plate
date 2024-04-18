@@ -11,22 +11,24 @@ const Login = () => {
   const [error, setError] = useState('');
 
   const handleLogin = () => {
-    // Regular expression for email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    // // Regular expression for email validation
+    // const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-    // Regular expression for password validation (at least 6 characters)
-    const passwordRegex = /^.{6,}$/;
+    // // Regular expression for password validation (at least 6 characters)
+    // const passwordRegex = /^.{6,}$/;
 
-    // Perform validation
-    if (!emailRegex.test(email)) {
-      setError('Please enter a valid email address');
-    } else if (!passwordRegex.test(password)) {
-      setError('Password must be at least 6 characters long');
-    } else {
-      // Perform login logic here
-      // If successful, navigate to the home screen
-      // If unsuccessful, display an error message
-    }
+    // // Perform validation
+    // if (!emailRegex.test(email)) {
+    //   setError('Please enter a valid email address');
+    // } else if (!passwordRegex.test(password)) {
+    //   setError('Password must be at least 6 characters long');
+    // } else {
+    //   // Perform login logic here
+    //   // If successful, navigate to the home screen
+    //   // If unsuccessful, display an error message
+    // }
+
+    navigation.navigate('Home');
   };
 
   const handleNavigate = () => {
