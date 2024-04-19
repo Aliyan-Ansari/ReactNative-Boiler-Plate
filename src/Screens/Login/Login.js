@@ -1,11 +1,16 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
-import {styles} from './style';
+import {getStyles} from './style';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome icons from vector-icons library
+import {useDarkMode} from '../../ThemeContext';
+import {darkMode, lightMode} from '../../theme/theme';
 
 const Login = () => {
   const navigation = useNavigation();
+  const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
+  const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
+  const [styles, setStyles] = useState(getStyles(theme));
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
@@ -28,7 +33,7 @@ const Login = () => {
     //   // If unsuccessful, display an error message
     // }
 
-    navigation.navigate('Home');
+    navigation.navigate('Dashboard');
   };
 
   const handleNavigate = () => {
@@ -47,7 +52,7 @@ const Login = () => {
           style={styles.input}
           placeholder="Email"
           onChangeText={text => setEmail(text)}
-          placeholderTextColor={styles.inputPlaceHolder.color}
+          placeholderTextColor={theme.inputPlaceHolderColor}
           value={email}
         />
       </View>
@@ -58,7 +63,7 @@ const Login = () => {
           style={styles.input}
           placeholder="Password"
           secureTextEntry
-          placeholderTextColor={styles.inputPlaceHolder.color}
+          placeholderTextColor={theme.inputPlaceHolderColor}
           onChangeText={text => setPassword(text)}
           value={password}
         />

@@ -16,14 +16,24 @@ export const stackScreens = [
     component: () => <Register />,
     linkText: 'Go To Signup',
   },
-];
-
-export const tabScreens = [
   {
     name: 'Dashboard',
     component: () => <HomeScreen />,
     linkText: 'Go To Home',
   },
+  // {
+  //   name: 'Dashboard',
+  //   component: () => <HomeScreen />,
+  //   linkText: 'Go To Home',
+  // },
+];
+
+export const tabScreens = [
+  // {
+  //   name: 'Dashboard',
+  //   component: () => <HomeScreen />,
+  //   linkText: 'Go To Home',
+  // },
 ];
 
 export const tabIconGenerator = ({route, size, color}) => {

@@ -2,14 +2,17 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-// import { AuthContext } from './AuthContext';
 import {stackScreens} from '../constants/TabScreen';
+import RubikMedium from '../../assets/fonts/Rubik-Medium.ttf';
 import DrawerNavigation from './DrawerNavigation';
+import {useDarkMode} from '../ThemeContext'; // Import useDarkMode hook
+import {darkMode, lightMode} from '../theme/theme'; // Import theme objects
 
 const Stack = createNativeStackNavigator();
 
 const AppNavigator = () => {
-  //   const { user } = useContext(AuthContext);
+  const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
+  const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
 
   return (
     <NavigationContainer>
@@ -17,6 +20,11 @@ const AppNavigator = () => {
         initialRouteName="Login"
         screenOptions={{
           // headerShown: false,
+          headerStyle: {
+            fontFamily: RubikMedium,
+            backgroundColor: theme.headerBackgroundColor, // Change header background color based on theme
+          },
+          headerTintColor: theme.headerTextColor, // Change header text color based on theme
           animation: 'none',
         }}>
         {stackScreens.map((stack, index) => (
@@ -28,19 +36,19 @@ const AppNavigator = () => {
               stack.title
                 ? {
                     title: stack.title,
-                    fontFamily: 'Rubik-Medium',
-                    headerShown: true,
-                    headerStyle: {
-                      fontFamily: 'Rubik-Medium',
-                      // backgroundColor: isDarkMode ? '#010101' : '#FFFFFF', // Change header background color based on isDarkMode
-                    },
-                    // headerTintColor: isDarkMode ? '#FFFFFF' : '#000000', // Change header text color based on isDarkMode
+                    // fontFamily: RubikMedium,
+                    // headerShown: true,
+                    // headerStyle: {
+                    //   fontFamily: RubikMedium,
+                    //   backgroundColor: theme.headerBackgroundColor, // Change header background color based on theme
+                    // },
+                    // headerTintColor: theme.headerTextColor, // Change header text color based on theme
                   }
                 : {}
             }
           />
         ))}
-        <Stack.Screen name="Home" component={DrawerNavigation} />
+        {/* <Stack.Screen name="Home" component={DrawerNavigation} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );
