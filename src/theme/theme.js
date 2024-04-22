@@ -33,9 +33,14 @@ export const darkMode = {
   // Text colors
   textColor: '#FFFFFF',
 
+  // Border Colors
+
+  borderColor: '#7D7D7D',
+
   // Button colors
   buttonBackgroundColor: '#4D4D4D',
   buttonTextColor: '#FFFFFF',
+  buttonBorderColor: '#7D7D7D',
 
   // Input colors
   inputBackgroundColor: '#333333',
@@ -45,7 +50,7 @@ export const darkMode = {
   dividerColor: '#444444',
 
   // Header colors
-  headerBackgroundColor: '#1E1E1E',
+  headerBackgroundColor: '#333333',
   headerTextColor: '#FFFFFF',
 
   // Additional colors from login.js

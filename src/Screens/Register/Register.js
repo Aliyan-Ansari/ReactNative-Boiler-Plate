@@ -1,11 +1,16 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, TextInput, Text, TouchableOpacity} from 'react-native';
-import {styles} from './style';
+import {getStyles, styles} from './style';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome icons from vector-icons library
+import {useDarkMode} from '../../ThemeContext';
+import {darkMode, lightMode} from '../../theme/theme';
 
 const Register = () => {
   const navigation = useNavigation();
+  const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
+  const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
+  const [styles, setStyles] = useState(getStyles(theme));
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -31,6 +36,11 @@ const Register = () => {
     navigation.navigate('Login');
   };
 
+  useEffect(() => {
+    // Update styles when isDarkMode changes
+    setStyles(getStyles(theme));
+  }, [isDarkMode, theme]);
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Register</Text>
@@ -41,7 +51,7 @@ const Register = () => {
         <TextInput
           style={styles.input}
           placeholder="Email"
-          placeholderTextColor={styles.inputPlaceHolder.color}
+          placeholderTextColor={theme.inputPlaceHolderColor}
           value={email}
           onChangeText={setEmail}
         />
@@ -53,7 +63,7 @@ const Register = () => {
           style={styles.input}
           placeholder="Password"
           secureTextEntry
-          placeholderTextColor={styles.inputPlaceHolder.color}
+          placeholderTextColor={theme.inputPlaceHolderColor}
           value={password}
           onChangeText={setPassword}
         />
@@ -65,7 +75,7 @@ const Register = () => {
           style={styles.input}
           placeholder="Confirm Password"
           secureTextEntry
-          placeholderTextColor={styles.inputPlaceHolder.color}
+          placeholderTextColor={theme.inputPlaceHolderColor}
           value={confirmPassword}
           onChangeText={setConfirmPassword}
         />

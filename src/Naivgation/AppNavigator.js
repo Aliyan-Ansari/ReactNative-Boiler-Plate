@@ -36,13 +36,13 @@ const AppNavigator = () => {
               stack.title
                 ? {
                     title: stack.title,
-                    // fontFamily: RubikMedium,
-                    // headerShown: true,
-                    // headerStyle: {
-                    //   fontFamily: RubikMedium,
-                    //   backgroundColor: theme.headerBackgroundColor, // Change header background color based on theme
-                    // },
-                    // headerTintColor: theme.headerTextColor, // Change header text color based on theme
+                    fontFamily: RubikMedium,
+                    headerShown: true,
+                    headerStyle: {
+                      fontFamily: RubikMedium,
+                      backgroundColor: theme.headerBackgroundColor, // Change header background color based on theme
+                    },
+                    headerTintColor: theme.headerTextColor, // Change header text color based on theme
                   }
                 : {}
             }

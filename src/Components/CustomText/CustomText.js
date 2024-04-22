@@ -3,7 +3,12 @@ import {Text} from 'react-native';
 import RubikMedium from '../../../assets/fonts/Rubik-Medium.ttf';
 
 const CustomText = props => {
-  return <Text {...props} style={{fontFamily: RubikMedium}} />;
+  const {children, ...rest} = props;
+  return (
+    <Text style={{fontFamily: 'RubikMedium'}} {...rest}>
+      {children}
+    </Text>
+  );
 };
 
 export default CustomText;

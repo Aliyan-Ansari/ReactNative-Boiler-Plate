@@ -2,12 +2,16 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import AppNavigator from './src/Naivgation/AppNavigator';
 import {ThemeProvider} from './src/ThemeContext';
+import {StripeProvider} from '@stripe/stripe-react-native';
+import {stripePublishableKey} from './src/constants/Constants';
 
 const App = () => {
   return (
-    <ThemeProvider>
-      <AppNavigator />
-    </ThemeProvider>
+    <StripeProvider publishableKey={stripePublishableKey}>
+      <ThemeProvider>
+        <AppNavigator />
+      </ThemeProvider>
+    </StripeProvider>
   );
 };
 

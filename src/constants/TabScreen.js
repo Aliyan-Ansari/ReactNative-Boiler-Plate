@@ -1,40 +1,34 @@
 import React from 'react';
 import HomeScreen from '../Screens/Home/Home';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-// import TabScreenLayout from '../layouts/TabScreenLayout';
 import Register from '../Screens/Register/Register';
 import Login from '../Screens/Login/Login';
+import Settings from '../Screens/Settings/Settings';
 
 export const stackScreens = [
   {
     name: 'Login',
-    component: () => <Login />,
+    component: Login, // Remove the arrow function
     linkText: 'Go To Login',
   },
   {
     name: 'Signup',
-    component: () => <Register />,
+    component: Register, // Remove the arrow function
     linkText: 'Go To Signup',
   },
   {
     name: 'Dashboard',
-    component: () => <HomeScreen />,
+    component: HomeScreen, // Remove the arrow function
     linkText: 'Go To Home',
   },
-  // {
-  //   name: 'Dashboard',
-  //   component: () => <HomeScreen />,
-  //   linkText: 'Go To Home',
-  // },
+  {
+    name: 'Settings',
+    component: Settings, // Remove the arrow function
+    linkText: 'Go To Settings',
+  },
 ];
 
-export const tabScreens = [
-  // {
-  //   name: 'Dashboard',
-  //   component: () => <HomeScreen />,
-  //   linkText: 'Go To Home',
-  // },
-];
+export const tabScreens = [];
 
 export const tabIconGenerator = ({route, size, color}) => {
   let iconName;

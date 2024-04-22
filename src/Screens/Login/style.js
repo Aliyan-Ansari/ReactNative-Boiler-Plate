@@ -14,7 +14,7 @@ export const getStyles = theme => {
       fontSize: 24,
       fontWeight: 'bold',
       marginBottom: 16,
-      color: theme.text,
+      color: theme.textColor,
     },
     error: {
       color: 'red',
@@ -38,16 +38,18 @@ export const getStyles = theme => {
       borderRadius: 8,
       paddingHorizontal: 8,
       color: theme.inputTextColor,
-      backgroundColor: theme.inputBackground,
+      backgroundColor: theme.inputBackgroundColor,
     },
     button: {
-      backgroundColor: theme.buttonBackground,
+      backgroundColor: theme.buttonBackgroundColor,
       paddingVertical: 12,
       paddingHorizontal: 32,
       borderRadius: 4,
+      borderWidth: 1,
+      borderColor: theme.buttonBorderColor,
     },
     buttonText: {
-      color: theme.buttonText,
+      color: theme.buttonTextColor,
       fontSize: 16,
       fontWeight: 'bold',
     },
@@ -55,7 +57,7 @@ export const getStyles = theme => {
       marginTop: 10,
     },
     signupText: {
-      color: theme.signupText,
+      color: theme.signupLinkColor,
       textDecorationLine: 'underline',
     },
   });

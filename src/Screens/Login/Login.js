@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {getStyles} from './style';
@@ -40,6 +40,11 @@ const Login = () => {
     // Navigate to the signup screen
     navigation.navigate('Signup');
   };
+
+  useEffect(() => {
+    // Update styles when isDarkMode changes
+    setStyles(getStyles(theme));
+  }, [isDarkMode, theme]);
 
   return (
     <View style={styles.container}>
