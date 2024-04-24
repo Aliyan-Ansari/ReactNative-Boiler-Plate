@@ -1,74 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {View, TouchableOpacity, Switch} from 'react-native';
-import {usePaymentSheet} from '@stripe/stripe-react-native';
 import {getStyles} from './style';
+import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDarkMode} from '../../ThemeContext';
 import {darkMode, lightMode} from '../../theme/theme';
 import CustomText from '../../Components/CustomText/CustomText';
-import {checkAPI} from '../../Actions/Stripe/Stripe';
+import {createStripeUser} from '../../Actions/Stripe/Stripe';
 
 const Settings = () => {
+  const navigation = useNavigation();
   const {isDarkMode, toggleMode} = useDarkMode();
-  const [ready, setReady] = useState(false);
   const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
   const [styles, setStyles] = useState(getStyles(theme));
-  const {initPaymentSheet, presentPaymentSheet, loading} = usePaymentSheet();
-
-  const fetchPaymentSheetParams = async () => {
-    const response = await fetch('http://localhost:4242/checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const {paymentIntent, ephemeralKey, customer} = await response.json();
-    return {paymentIntent, ephemeralKey, customer};
-  };
-
-  const initializePaymentSheet = async () => {
-    const {paymentIntent, ephemeralKey, customer} =
-      await fetchPaymentSheetParams();
-
-    const {error} = await initPaymentSheet({
-      paymentIntentClientSecret: paymentIntent,
-      customerEphemeralKeySecret: ephemeralKey,
-      customerId: customer,
-      merchantDisplayName: 'React Native Plus',
-      allowsDelayedPaymentMethods: true,
-    });
-    if (error) {
-      console.log('Error initializing PaymentSheet', error);
-    } else {
-      console.log('PaymentSheet initialized');
-      setReady(true);
-    }
-  };
-
-  useEffect(() => {
-    initializePaymentSheet();
-  }, []);
-
-  // list items
-  const listItems = [
-    {
-      text: 'Create A Backup',
-      onPress: () => console.log('List Item 1 pressed'),
-    },
-    {
-      text: 'Restore a Backup',
-      onPress: () => console.log('List Item 1 pressed'),
-    },
-    {
-      text: 'Delete a Backup Copy',
-      onPress: () => console.log('List Item 1 pressed'),
-    },
-    {
-      text: 'Terms & Conditions',
-      onPress: () => console.log('List Item 3 pressed'),
-    },
-    {text: 'Call Us', onPress: () => console.log('List Item 2 pressed')},
-  ];
 
   const makePayload = () => {
     return {
@@ -80,10 +24,11 @@ const Settings = () => {
     console.log('Handle Subscribe Called');
     const payload = makePayload();
     try {
-      const response = await checkAPI();
-      response
-        .then(abc => console.log('Abc: ', abc))
-        .catch(err => console.log('Err', err));
+      const response = await createStripeUser(payload);
+      console.log('Response: ', response);
+      navigation.navigate('Payment', {
+        clientSecret: response.data.clientSecret,
+      });
     } catch (err) {
       console.log('Catch Error: ', err);
     }

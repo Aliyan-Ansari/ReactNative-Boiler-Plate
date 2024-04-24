@@ -19,7 +19,8 @@ apiService.interceptors.request.use(
 apiService.interceptors.response.use(
   response => response,
   async error => {
-    if (error.response.status === 401) {
+    if (error.response && error.response.status === 401) {
+      // Check if error.response exists
       try {
         // Sign out the user
       } catch (err) {

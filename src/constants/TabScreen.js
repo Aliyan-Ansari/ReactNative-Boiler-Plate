@@ -4,6 +4,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import Register from '../Screens/Register/Register';
 import Login from '../Screens/Login/Login';
 import Settings from '../Screens/Settings/Settings';
+import Payment from '../Screens/Payment/Payment';
 
 export const stackScreens = [
   {
@@ -25,6 +26,11 @@ export const stackScreens = [
     name: 'Settings',
     component: Settings, // Remove the arrow function
     linkText: 'Go To Settings',
+  },
+  {
+    name: 'Payment',
+    component: Payment, // Remove the arrow function
+    linkText: 'Go To Payment',
   },
 ];
 

@@ -4,4 +4,4 @@ export const stripePublishableKey =
 export const stripeSecretKey =
   'sk_test_51MOK4WL2DfzLpMQB2wePGddbVt1GumT9dIvTl41gIjcUHMauqpRxnGk6T3aaUgArj9eWlW696j46BNtc7WN7aQWA00dxJTrUHl';
 
-export const BASE_URL = 'http://localhost:5000';
+export const BASE_URL = 'http://192.168.18.39:8000/';
