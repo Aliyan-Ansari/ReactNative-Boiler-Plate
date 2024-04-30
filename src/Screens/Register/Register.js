@@ -81,7 +81,7 @@ const Register = () => {
         />
       </View>
       <TouchableOpacity style={styles.button} onPress={handleSignUp}>
-        <Text style={styles.buttonText}>Login</Text>
+        <Text style={styles.buttonText}>Sign up</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={handleNavigate} style={styles.loginLink}>
         <Text style={styles.loginText}>Already have an account? Login</Text>

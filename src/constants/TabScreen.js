@@ -9,32 +9,48 @@ import Payment from '../Screens/Payment/Payment';
 export const stackScreens = [
   {
     name: 'Login',
-    component: Login, // Remove the arrow function
+    component: Login,
     linkText: 'Go To Login',
   },
   {
     name: 'Signup',
-    component: Register, // Remove the arrow function
+    component: Register,
     linkText: 'Go To Signup',
   },
+  // {
+  //   name: 'Dashboard',
+  //   component: HomeScreen,
+  //   linkText: 'Go To Home',
+  // },
+  // {
+  //   name: 'Settings',
+  //   component: Settings,
+  //   linkText: 'Go To Settings',
+  // },
+  // {
+  //   name: 'Payment',
+  //   component: Payment,
+  //   linkText: 'Go To Payment',
+  // },
+];
+
+export const tabScreens = [
   {
-    name: 'Dashboard',
-    component: HomeScreen, // Remove the arrow function
+    name: 'Home',
+    component: HomeScreen,
     linkText: 'Go To Home',
   },
   {
     name: 'Settings',
-    component: Settings, // Remove the arrow function
+    component: Settings,
     linkText: 'Go To Settings',
   },
   {
     name: 'Payment',
-    component: Payment, // Remove the arrow function
+    component: Payment,
     linkText: 'Go To Payment',
   },
 ];
-
-export const tabScreens = [];
 
 export const tabIconGenerator = ({route, size, color}) => {
   let iconName;

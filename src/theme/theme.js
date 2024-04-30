@@ -6,7 +6,8 @@ export const lightMode = {
   textColor: '#000000',
 
   // Button colors
-  buttonBackgroundColor: '#007AFF',
+  // buttonBackgroundColor: '#7DB32E',
+  buttonBackgroundColor: '#5DBEA3',
   buttonTextColor: '#FFFFFF',
 
   // Input colors
@@ -23,7 +24,7 @@ export const lightMode = {
   // Additional colors from login.js
   inputPlaceHolderColor: '#808080',
   errorTextColor: '#FF0000',
-  signupLinkColor: '#007AFF',
+  signupLinkColor: '#5ADBB5',
 };
 
 export const darkMode = {
@@ -38,7 +39,7 @@ export const darkMode = {
   borderColor: '#7D7D7D',
 
   // Button colors
-  buttonBackgroundColor: '#4D4D4D',
+  buttonBackgroundColor: '#5DBEA3',
   buttonTextColor: '#FFFFFF',
   buttonBorderColor: '#7D7D7D',
 
@@ -56,5 +57,5 @@ export const darkMode = {
   // Additional colors from login.js
   inputPlaceHolderColor: '#808080',
   errorTextColor: '#FF0000',
-  signupLinkColor: '#007AFF',
+  signupLinkColor: '#5ADBB5',
 };

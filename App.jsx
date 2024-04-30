@@ -1,5 +1,5 @@
-import React from 'react';
 import 'react-native-gesture-handler';
+import React from 'react';
 import AppNavigator from './src/Naivgation/AppNavigator';
 import {ThemeProvider} from './src/ThemeContext';
 import {StripeProvider} from '@stripe/stripe-react-native';

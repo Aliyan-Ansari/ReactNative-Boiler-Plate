@@ -1,0 +1,133 @@
+import {StyleSheet} from 'react-native';
+
+export const getStyles = theme => {
+  return StyleSheet.create({
+    container: {
+      flex: 1,
+      height: '100%',
+      backgroundColor: theme.backgroundColor,
+      justifyContent: 'space-between',
+    },
+    folderEntry: {
+      width: '46%',
+      // flexDirection: 'row',
+      height: 110,
+      padding: 15,
+      margin: 5,
+      borderRadius: 5,
+      backgroundColor: theme.backgroundColor,
+    },
+    fileContainer: {
+      flexDirection: 'row',
+      width: '100%',
+      paddingHorizontal: 5,
+    },
+    icons: {
+      marginTop: -5,
+      paddingLeft: 5,
+      flexDirection: 'row',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    folderDetails: {
+      marginTop: 5,
+    },
+    folderName: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      textAlign: 'center',
+    },
+    folderInfo: {
+      fontSize: 11,
+      textAlign: 'center',
+      marginRight: 10,
+    },
+    ctaContainer: {
+      height: 50,
+      width: '85%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderBottomWidth: 3,
+      //   borderRadius: 10,
+      marginTop: 15,
+      marginBottom: 5,
+      marginLeft: 'auto',
+      marginRight: 'auto',
+      borderColor: theme.borderColor,
+      // backgroundColor: theme.colorPallete.lightGray,
+    },
+    ctaText: {
+      fontWeight: 'bold',
+      fontStyle: 'italic',
+      fontSize: 18,
+      marginRight: 10,
+      color: theme.textColor,
+    },
+    action: {
+      borderWidth: 2,
+      borderColor: theme.borderColor,
+      width: 24,
+      height: 24,
+      position: 'absolute',
+      left: -5,
+      bottom: -2,
+      borderRadius: 15,
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    fileInfo: {
+      display: 'flex',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      width: '100%',
+      // marginRight: 10,
+    },
+    folderDescription: {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    fileTitle: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      alignItems: 'flex-end',
+      fontFamily: 'Rubik-Medium',
+      color: theme.textColor,
+    },
+    fileSize: {
+      fontSize: 10,
+      color: theme.inputPlaceHolderColor,
+      marginLeft: 5,
+    },
+    folderIcon: {
+      color: theme.textColor,
+    },
+    routeList: {
+      padding: 10,
+      marginTop: 10,
+      borderTopWidth: 1,
+      borderColor: theme.borderColor,
+      justifyContent: 'flex-end',
+    },
+    subRoutesEntry: {
+      width: '95%',
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'flex-start',
+      padding: 15,
+      margin: 5,
+      borderRadius: 5,
+      backgroundColor: theme.backgroundColor,
+    },
+    subRoutesIcon: {
+      color: theme.textColor,
+    },
+    routeTitle: {
+      fontSize: 18,
+      marginLeft: 15,
+      color: theme.textColor,
+    },
+  });
+};

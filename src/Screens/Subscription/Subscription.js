@@ -1,29 +1,30 @@
 import React, {useState} from 'react';
-import {useStripe, Elements, PaymentElement} from '@stripe/stripe-react-native';
+import {
+  useStripe,
+  Elements,
+  PaymentElement,
+  presentPaymentSheet,
+  PaymentSheetError,
+} from '@stripe/stripe-react-native';
 
 const PaymentForm = ({onSubmit}) => {
   const [cardDetails, setCardDetails] = useState({});
   const stripe = useStripe();
 
   const handleSubmit = async () => {
-    const {error} = await stripe.confirmCardPayment(
-      // Replace with your actual PaymentIntent client secret if you're using one
-      'YOUR_PAYMENT_INTENT_CLIENT_SECRET',
-      {
-        payment_method: {
-          //   card: **elements.getElement(CardElement)**,
-        },
-      },
-    );
-
-    if (error) {
-      console.error(error);
-      // Handle payment error gracefully
-    } else {
-      // Retrieve customer ID from response or generate on backend
-      const customerId = 'YOUR_CUSTOMER_ID'; // Replace with actual customer ID
-      onSubmit(customerId); // Call your subscription creation function
-    }
+    async () => {
+      const {error} = await presentPaymentSheet();
+      if (error) {
+        console.log('Payment Sheet error', error.code, error.message);
+        if (error.code === PaymentSheetError.Failed) {
+          // Handle failed
+        } else if (error.code === PaymentSheetError.Canceled) {
+          // Handle canceled
+        }
+      } else {
+        // Payment succeeded
+      }
+    };
   };
 
   return (

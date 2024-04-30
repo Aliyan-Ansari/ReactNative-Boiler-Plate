@@ -46,7 +46,7 @@ export const getStyles = theme => {
       paddingHorizontal: 32,
       borderRadius: 4,
       borderWidth: 1,
-      borderColor: theme.buttonBorderColor,
+      // borderColor: theme.buttonBorderColor,
     },
     buttonText: {
       color: theme.buttonTextColor,

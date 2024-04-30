@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, TouchableOpacity, Switch} from 'react-native';
+import {View, TouchableOpacity, Switch, ActivityIndicator} from 'react-native';
 import {getStyles} from './style';
 import {useNavigation} from '@react-navigation/native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,24 +13,28 @@ const Settings = () => {
   const {isDarkMode, toggleMode} = useDarkMode();
   const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
   const [styles, setStyles] = useState(getStyles(theme));
+  const [loading, setLoading] = useState(false);
 
   const makePayload = () => {
     return {
-      email: 'omer@gmail.com',
+      email: 'nativepro@gmail.com',
     };
   };
 
   const handleSubscribe = async () => {
-    console.log('Handle Subscribe Called');
-    const payload = makePayload();
-    try {
-      const response = await createStripeUser(payload);
-      console.log('Response: ', response);
-      navigation.navigate('Payment', {
-        clientSecret: response.data.clientSecret,
-      });
-    } catch (err) {
-      console.log('Catch Error: ', err);
+    if (!loading) {
+      setLoading(true);
+      const payload = makePayload();
+      try {
+        const response = await createStripeUser({data: payload});
+        setLoading(false);
+        navigation.navigate('Payment', {
+          clientSecret: response.data.clientSecret,
+        });
+      } catch (err) {
+        console.log('Catch Error: ', err);
+        setLoading(false);
+      }
     }
   };
 
@@ -48,7 +52,11 @@ const Settings = () => {
         </CustomText>
         <TouchableOpacity style={styles.listItem} onPress={handleSubscribe}>
           <CustomText style={styles.listItemText}>{'Subscription'}</CustomText>
-          <Ionicons name="arrow-forward" size={22} color={theme.textColor} />
+          {loading ? (
+            <ActivityIndicator size={22} color={theme.buttonBackgroundColor} />
+          ) : (
+            <Ionicons name="arrow-forward" size={22} color={theme.textColor} />
+          )}
         </TouchableOpacity>
       </View>
 
@@ -58,8 +66,8 @@ const Settings = () => {
         <View style={styles.switchContainer}>
           <CustomText style={styles.switchLabel}>Enable Dark Mode</CustomText>
           <Switch
-            trackColor={{false: '#b2b2b2', true: '#4d4d4d'}}
-            thumbColor={isDarkMode ? '#D2042D' : '#000000'}
+            trackColor={{false: '#b2b2b2', true: '#318a8f'}}
+            thumbColor={isDarkMode ? '#5DBEA3' : '#5DBEA3'}
             ios_backgroundColor="#3e3e3e"
             onValueChange={toggleMode}
             value={isDarkMode}

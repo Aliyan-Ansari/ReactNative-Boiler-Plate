@@ -1,10 +1,12 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, FlatList, TouchableOpacity} from 'react-native';
 // import {useDarkMode} from '../../DarkModeContext';
 import {getStyles} from './CustomDrawer.style';
 import CustomText from '../CustomText/CustomText';
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {useDarkMode} from '../../ThemeContext';
+import {darkMode, lightMode} from '../../theme/theme';
 
 const FOLDERS_LIST_DUMMY = [
   {
@@ -17,6 +19,21 @@ const FOLDERS_LIST_DUMMY = [
     name: 'Folder-2',
     size: '6.4mb',
     count: 10,
+    id: 2,
+  },
+];
+
+const SUB_LIST = [
+  {
+    name: 'Settings',
+    route: 'Settings',
+    icon: 'settings-outline',
+    id: 1,
+  },
+  {
+    name: 'Log Out',
+    route: 'LogOut',
+    icon: 'log-out-outline',
     id: 2,
   },
 ];
@@ -43,20 +60,30 @@ const FolderEntry = ({name, size, count, styles, isDarkMode}) => (
   </View>
 );
 
-const DrawerFileButton = ({styles, isDarkMode}) => {
-  //   const theme = isDarkMode ? darkModeTheme : appTheme;
+const SubRouteList = ({name, route, icon, styles, theme}) => (
+  <View style={styles.subRoutesEntry}>
+    <Ionicons name={icon} color={theme.textColor} size={20} />
+    <CustomText style={styles.routeTitle}>{name}</CustomText>
+  </View>
+);
+
+const DrawerFileButton = ({styles}) => {
   return (
     <TouchableOpacity style={styles.ctaContainer}>
-      <CustomText style={styles.ctaText}>New File</CustomText>
-      <Ionicons name="add" size={25} color="white" />
-      {/* <Ionicons name="add" size={25} color={isDarkMode ? theme.colorPallete.inputWhite : theme.colorPallete.black} /> */}
+      <CustomText style={styles.ctaText}>React Native Plus+</CustomText>
     </TouchableOpacity>
   );
 };
 
 const CustomDrawerHeader = () => {
-  //   const {isDarkMode} = useDarkMode();
-  const styles = getStyles();
+  const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
+  const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
+  const [styles, setStyles] = useState(getStyles(theme));
+
+  useEffect(() => {
+    // Update styles when isDarkMode changes
+    setStyles(getStyles(theme));
+  }, [isDarkMode, theme]);
 
   const renderItem = ({item}) => (
     <FolderEntry
@@ -69,43 +96,36 @@ const CustomDrawerHeader = () => {
     />
   );
 
+  const renderRoutes = ({item}) => (
+    <SubRouteList
+      name={item.name}
+      route={item.route}
+      icon={item.icon}
+      styles={styles}
+      theme={theme}
+    />
+  );
+
   return (
-    {
-      name: 'Folder-1',
-      size: '64mb',
-      count: 10,
-      id: 13,
-    },
-    {
-      name: 'Folder-1',
-      size: '64mb',
-      count: 10,
-      id: 14,
-    },
-    {
-      name: 'Folder-1',
-      size: '64mb',
-      count: 10,
-      id: 15,
-    },
-    {
-      name: 'Folder-1',
-      size: '64mb',
-      count: 10,
-      id: 16,
-    },
-    (
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View>
         <DrawerFileButton styles={styles} isDarkMode={true} />
         <FlatList
           data={FOLDERS_LIST_DUMMY}
           renderItem={renderItem}
           keyExtractor={item => item.id}
           numColumns={2}
-          contentContainerStyle={{padding: 10}}
+          contentContainerStyle={{padding: 10, height: 600}}
         />
       </View>
-    )
+      <FlatList
+        data={SUB_LIST}
+        renderItem={renderRoutes}
+        keyExtractor={item => item.id}
+        numColumns={1}
+        contentContainerStyle={styles.routeList}
+      />
+    </View>
   );
 };
 
