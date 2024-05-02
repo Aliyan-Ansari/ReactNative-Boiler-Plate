@@ -15,14 +15,14 @@ const HomeScreen = ({navigation}) => {
   }, [isDarkMode, theme]);
 
   const goToSettings = () => {
-    navigation.navigate('Settings');
+    navigation.navigate('Chat');
     // navigation.openDrawer(); // Open the drawer
   };
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Your App</Text>
       <TouchableOpacity style={styles.button} onPress={goToSettings}>
-        <Text style={styles.buttonText}>Go To Settings</Text>
+        <Text style={styles.buttonText}>Start Chat</Text>
       </TouchableOpacity>
     </View>
   );

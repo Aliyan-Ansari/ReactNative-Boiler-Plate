@@ -8,6 +8,10 @@ export const getStyles = theme => {
       backgroundColor: theme.backgroundColor,
       justifyContent: 'space-between',
     },
+    itemList: {
+      padding: 10,
+      height: 600,
+    },
     folderEntry: {
       width: '46%',
       // flexDirection: 'row',

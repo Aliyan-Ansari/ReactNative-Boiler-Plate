@@ -5,6 +5,7 @@ import Register from '../Screens/Register/Register';
 import Login from '../Screens/Login/Login';
 import Settings from '../Screens/Settings/Settings';
 import Payment from '../Screens/Payment/Payment';
+import ChatScreen from '../Screens/Chat/Chat';
 
 export const stackScreens = [
   {
@@ -49,6 +50,11 @@ export const tabScreens = [
     name: 'Payment',
     component: Payment,
     linkText: 'Go To Payment',
+  },
+  {
+    name: 'Chat',
+    component: ChatScreen,
+    linkText: 'Go To Chat',
   },
 ];
 

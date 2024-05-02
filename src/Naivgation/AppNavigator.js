@@ -2,16 +2,13 @@
 import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {NavigationContainer} from '@react-navigation/native';
-import {stackScreens, tabScreens} from '../constants/TabScreen';
+import {stackScreens} from '../constants/TabScreen';
 import RubikMedium from '../../assets/fonts/Rubik-Medium.ttf';
 import DrawerNavigation from './DrawerNavigation';
-import CustomDrawer from '../Components/CustomDrawer/CustomDrawer';
-import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useDarkMode} from '../ThemeContext'; // Import useDarkMode hook
 import {darkMode, lightMode} from '../theme/theme'; // Import theme objects
 
 const Stack = createNativeStackNavigator();
-const Drawer = createDrawerNavigator();
 
 const AppNavigator = () => {
   const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
