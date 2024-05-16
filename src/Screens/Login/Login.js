@@ -5,7 +5,6 @@ import {getStyles} from './style';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome icons from vector-icons library
 import {useDarkMode} from '../../ThemeContext';
 import {darkMode, lightMode} from '../../theme/theme';
-import createAuthModule from '../../Modules/AuthModule';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -46,13 +45,6 @@ const Login = () => {
     // Update styles when isDarkMode changes
     setStyles(getStyles(theme));
   }, [isDarkMode, theme]);
-
-  useEffect(() => {
-    // Example usage
-    const authProvider = 'firebase'; // This can be configured dynamically
-    const authModule = createAuthModule(authProvider);
-    authModule.signUp('user@example.com', 'password');
-  }, []);
 
   return (
     <View style={styles.container}>

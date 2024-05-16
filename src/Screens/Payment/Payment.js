@@ -12,12 +12,10 @@ const Payment = () => {
   const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
   const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
   const [styles, setStyles] = useState(getStyles(theme));
-  const {clientSecret} = route.params;
+  const clientSecret = route?.params?.clientSecret;
   const [ready, setReady] = useState(false);
 
   const {initPaymentSheet, presentPaymentSheet} = useStripe();
-
-  console.log('clientSecret: ', clientSecret);
 
   const handlePay = async () => {
     const {error} = await presentPaymentSheet();
@@ -50,8 +48,9 @@ const Payment = () => {
         console.log('PaymentSheet initialized');
       }
     };
-
-    initializePaymentSheet();
+    if (clientSecret) {
+      initializePaymentSheet();
+    }
   }, [clientSecret, initPaymentSheet]);
 
   useEffect(() => {

@@ -1,26 +1,36 @@
 import React, {useEffect, useState} from 'react';
 import {View, FlatList, TouchableOpacity} from 'react-native';
-// import {useDarkMode} from '../../DarkModeContext';
-import {getStyles} from './CustomDrawer.style';
-import CustomText from '../CustomText/CustomText';
-
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useDarkMode} from '../../ThemeContext';
 import {darkMode, lightMode} from '../../theme/theme';
 import {useNavigation} from '@react-navigation/native';
+import {getStyles} from './CustomDrawer.style';
+import CustomText from '../CustomText/CustomText';
+import {excerpt} from '../../utils/HelperFunctions';
 
 const FOLDERS_LIST_DUMMY = [
   {
-    name: 'Folder-1',
-    size: '64mb',
-    count: 10,
+    name: 'Two way data binding overview',
     id: 1,
   },
   {
-    name: 'Folder-2',
-    size: '6.4mb',
-    count: 10,
+    name: 'Flex Auth module setup',
     id: 2,
+  },
+  {
+    name: 'Data binding in Angular',
+    id: 3,
+  },
+];
+
+const FOLDERS_SUB_LIST_DUMMY = [
+  {
+    name: 'Time Mastery Strategies',
+    id: 3,
+  },
+  {
+    name: 'Save Blob in Sqlite',
+    id: 4,
   },
 ];
 
@@ -41,21 +51,18 @@ const SUB_LIST = [
 
 const FolderEntry = ({name, size, count, styles, isDarkMode}) => (
   <View style={styles.folderEntry}>
-    <View style={styles.icons}>
-      <View style={styles.action}>
-        <Ionicons
-          name="ellipsis-horizontal"
-          color={isDarkMode ? 'white' : 'black'}
-          size={15}
-        />
-      </View>
-      <Ionicons name="folder" size={36} style={styles.folderIcon} />
-    </View>
     <View style={styles.fileInfo}>
-      <CustomText style={styles.fileTitle}>{name}</CustomText>
-      <View style={styles.folderDescription}>
-        <CustomText style={styles.fileSize}>Items: {count} </CustomText>
-        <CustomText style={styles.fileSize}>Size: {size} </CustomText>
+      <TouchableOpacity>
+        <CustomText style={styles.fileTitle}>{excerpt(name, 24)}</CustomText>
+      </TouchableOpacity>
+      <View style={styles.action}>
+        <TouchableOpacity>
+          <Ionicons
+            name="ellipsis-horizontal"
+            color={isDarkMode ? 'white' : 'black'}
+            size={15}
+          />
+        </TouchableOpacity>
       </View>
     </View>
   </View>
@@ -79,8 +86,8 @@ const DrawerFileButton = ({styles}) => {
 };
 
 const CustomDrawerHeader = () => {
-  const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
-  const theme = isDarkMode ? darkMode : lightMode; // Get theme based on isDarkMode
+  const {isDarkMode} = useDarkMode();
+  const theme = isDarkMode ? darkMode : lightMode;
   const [styles, setStyles] = useState(getStyles(theme));
   const navigation = useNavigation();
 
@@ -90,7 +97,6 @@ const CustomDrawerHeader = () => {
   };
 
   useEffect(() => {
-    // Update styles when isDarkMode changes
     setStyles(getStyles(theme));
   }, [isDarkMode, theme]);
 
@@ -120,21 +126,33 @@ const CustomDrawerHeader = () => {
     <View style={styles.container}>
       <View>
         <DrawerFileButton styles={styles} isDarkMode={true} />
+        <CustomText style={styles.chatGroup}>{excerpt('Today', 24)}</CustomText>
         <FlatList
           data={FOLDERS_LIST_DUMMY}
           renderItem={renderItem}
-          keyExtractor={item => item.id}
-          numColumns={2}
+          keyExtractor={item => item.id.toString()}
+          numColumns={1}
+          contentContainerStyle={styles.itemList}
+        />
+        <CustomText style={styles.chatGroup}>
+          {excerpt('Yesterday', 24)}
+        </CustomText>
+        <FlatList
+          data={FOLDERS_SUB_LIST_DUMMY}
+          renderItem={renderItem}
+          keyExtractor={item => item.id.toString()}
+          numColumns={1}
           contentContainerStyle={styles.itemList}
         />
       </View>
-      <FlatList
-        data={SUB_LIST}
-        renderItem={renderRoutes}
-        keyExtractor={item => item.id}
-        numColumns={1}
-        contentContainerStyle={styles.routeList}
-      />
+      <View style={styles.section}>
+        <FlatList
+          data={SUB_LIST}
+          renderItem={renderRoutes}
+          keyExtractor={item => item.id.toString()}
+          contentContainerStyle={styles.routeList}
+        />
+      </View>
     </View>
   );
 };

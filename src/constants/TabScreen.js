@@ -42,19 +42,22 @@ export const tabScreens = [
     linkText: 'Go To Home',
   },
   {
+    name: 'Chat',
+    component: ChatScreen,
+    linkText: 'Go To Chat',
+  },
+  {
     name: 'Settings',
     component: Settings,
     linkText: 'Go To Settings',
   },
+];
+
+export const appScreens = [
   {
     name: 'Payment',
     component: Payment,
     linkText: 'Go To Payment',
-  },
-  {
-    name: 'Chat',
-    component: ChatScreen,
-    linkText: 'Go To Chat',
   },
 ];
 

@@ -59,3 +59,10 @@ export const darkMode = {
   errorTextColor: '#FF0000',
   signupLinkColor: '#5ADBB5',
 };
+
+export const Colors = {
+  primary: '#545264',
+  gray: 'gray',
+  medium_gray: '#999',
+  dark_gray: '#666',
+};

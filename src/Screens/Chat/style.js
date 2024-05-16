@@ -6,6 +6,7 @@ export const getStyles = theme => {
       flex: 1,
       height: '100%',
       backgroundColor: theme.backgroundColor,
+      paddingBottom: 90,
     },
     inputToolbar: {
       //   width: '100%',

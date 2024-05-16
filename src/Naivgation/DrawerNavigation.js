@@ -1,9 +1,11 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import CustomDrawer from '../Components/CustomDrawer/CustomDrawer';
-import {tabScreens} from '../constants/TabScreen';
+// import {tabScreens} from '../constants/TabScreen';
 import {darkMode, lightMode} from '../theme/theme';
 import {useDarkMode} from '../ThemeContext';
+import BottomTabs from './BottomTab';
+import {appScreens} from '../constants/TabScreen';
 
 const Drawer = createDrawerNavigator();
 
@@ -13,7 +15,7 @@ const DrawerNavigation = () => {
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawer}
-      initialRouteName="Home"
+      initialRouteName="Dashboard"
       // useLegacyImplementation={false}
       screenOptions={{
         headerShown: true,
@@ -24,13 +26,14 @@ const DrawerNavigation = () => {
         headerTintColor: theme.headerTextColor,
         animation: 'none',
       }}>
-      {tabScreens.map((tab, index) => (
+      {appScreens.map((tab, index) => (
         <Drawer.Screen
           name={tab.name}
           key={`${(tab.name, index)}`}
           component={tab.component}
         />
       ))}
+      <Drawer.Screen name="Dashboard" component={BottomTabs} />
     </Drawer.Navigator>
   );
 };
