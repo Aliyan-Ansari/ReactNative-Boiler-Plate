@@ -5,7 +5,10 @@ import CustomDrawer from '../Components/CustomDrawer/CustomDrawer';
 import {darkMode, lightMode} from '../theme/theme';
 import {useDarkMode} from '../ThemeContext';
 import BottomTabs from './BottomTab';
-import {appScreens} from '../constants/TabScreen';
+import {appScreens, tabScreens} from '../constants/TabScreen';
+import Tabbar from '@mindinventory/react-native-tab-bar-interaction';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {tabs} from '../constants/Constants';
 
 const Drawer = createDrawerNavigator();
 

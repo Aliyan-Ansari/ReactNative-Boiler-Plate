@@ -4,18 +4,26 @@ export const getStyles = theme => {
   return StyleSheet.create({
     container: {
       flex: 1,
-      height: '100%',
+      // height: '100%',
       backgroundColor: theme.backgroundColor,
-      paddingBottom: 90,
+      paddingBottom: 80,
     },
     inputToolbar: {
       //   width: '100%',
       //   flex: 1,
       //   alignItems: 'center',
-      //   marginTop: 10,
+      marginTop: 10,
+      //   marginBottom: 10,
       paddingHorizontal: 10,
       paddingVertical: 5,
       backgroundColor: theme.inputBackgroundColor,
+    },
+    title: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: theme.titleColor,
+      textAlign: 'center',
+      paddingVertical: 10,
     },
     input: {
       width: 400,

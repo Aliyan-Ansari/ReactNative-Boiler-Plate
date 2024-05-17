@@ -5,11 +5,13 @@ import {
   InputToolbar,
   Composer,
   Send,
+  Bubble,
 } from 'react-native-gifted-chat';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Import icon library
+import Icon from 'react-native-vector-icons/FontAwesome';
 import {useDarkMode} from '../../ThemeContext';
 import {darkMode, lightMode} from '../../theme/theme';
 import {getStyles} from './style';
+import CurvedBackground from '../../Components/CurvedBackground/CurvedBackground';
 
 const ChatScreen = () => {
   const {isDarkMode} = useDarkMode();
@@ -23,7 +25,42 @@ const ChatScreen = () => {
       user: {
         _id: 2,
         name: 'G P T',
-        // avatar: 'https://placeimg.com/140/140/any',
+      },
+    },
+    {
+      _id: '1d051119-255e-419c-ac7a-07b6528f4283',
+      createdAt: '2024-05-02T14:01:24.592Z',
+      text: 'I will ask you some questions give me the answer',
+      user: {
+        _id: 1,
+        name: 'AA',
+      },
+    },
+    {
+      _id: '1d051119-255e-419c-ac7a-07b6528f4284',
+      createdAt: '2024-05-02T14:02:24.592Z',
+      text: 'Sure! Ask me anything.',
+      user: {
+        _id: 2,
+        name: 'G P T',
+      },
+    },
+    {
+      _id: '1d051119-255e-419c-ac7a-07b6528f4285',
+      createdAt: '2024-05-02T14:02:24.592Z',
+      text: 'Thanks for your response',
+      user: {
+        _id: 1,
+        name: 'AA',
+      },
+    },
+    {
+      _id: '1d051119-255e-419c-ac7a-07b6528f4286',
+      createdAt: '2024-05-02T14:03:24.592Z',
+      text: 'Anytime! Have a great day.',
+      user: {
+        _id: 2,
+        name: 'G P T',
       },
     },
   ]);
@@ -33,11 +70,26 @@ const ChatScreen = () => {
   }, [isDarkMode, theme]);
 
   const onSend = newMessages => {
-    console.log('--------- New Message ---------', newMessages);
+    setTimeout(() => {
+      // Simulating a response from the chatbot after 3 seconds
+      setMessages(previousMessages =>
+        GiftedChat.append(previousMessages, [
+          {
+            _id: Math.random().toString(),
+            createdAt: new Date(),
+            text: 'This is a random reply from GPT after 3 seconds.',
+            user: {
+              _id: 2,
+              name: 'G P T',
+            },
+          },
+        ]),
+      );
+    }, 3000);
+
     setMessages(previousMessages =>
       GiftedChat.append(previousMessages, newMessages),
     );
-    // Here you can handle sending messages to your backend service if needed
   };
 
   const renderInputToolbar = props => {
@@ -64,14 +116,6 @@ const ChatScreen = () => {
     );
   };
 
-  const renderEmojiButton = () => {
-    return (
-      <TouchableOpacity style={styles.emojiButtonContainer}>
-        <Icon name="smile-o" size={24} color={theme.buttonBackgroundColor} />
-      </TouchableOpacity>
-    );
-  };
-
   const renderAttachmentButton = () => {
     return (
       <TouchableOpacity style={styles.attachmentButtonContainer}>
@@ -80,10 +124,23 @@ const ChatScreen = () => {
     );
   };
 
+  const renderBubble = props => {
+    return (
+      <Bubble
+        {...props}
+        wrapperStyle={{
+          right: {
+            backgroundColor: '#5DBEA3', // Set background color for your side of chat
+          },
+        }}
+      />
+    );
+  };
+
   return (
     <View style={styles.container}>
       <GiftedChat
-        messages={messages}
+        messages={messages.slice().reverse()}
         onSend={onSend}
         user={{
           _id: 1,
@@ -93,7 +150,7 @@ const ChatScreen = () => {
         renderInputToolbar={renderInputToolbar}
         renderComposer={renderComposer}
         renderSend={renderSend}
-        // renderActions={renderEmojiButton} // Add emoji button
+        renderBubble={renderBubble}
       />
     </View>
   );
