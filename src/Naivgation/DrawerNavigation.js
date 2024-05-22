@@ -1,42 +1,44 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
+import {useNavigation} from '@react-navigation/native';
 import CustomDrawer from '../Components/CustomDrawer/CustomDrawer';
-// import {tabScreens} from '../constants/TabScreen';
 import {darkMode, lightMode} from '../theme/theme';
 import {useDarkMode} from '../ThemeContext';
 import BottomTabs from './BottomTab';
 import {appScreens, tabScreens} from '../constants/TabScreen';
-import Tabbar from '@mindinventory/react-native-tab-bar-interaction';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import {tabs} from '../constants/Constants';
+import HomeScreen from '../Screens/Home/Home';
+import ChatScreen from '../Screens/Chat/Chat';
+import Settings from '../Screens/Settings/Settings';
+import Payment from '../Screens/Payment/Payment';
 
+const DrawerContent = props => <CustomDrawer {...props} />;
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigation = () => {
+  const navigation = useNavigation();
   const {isDarkMode} = useDarkMode(); // Get isDarkMode state from context
   const theme = isDarkMode ? darkMode : lightMode; // Get theme based on Mode
+
   return (
     <Drawer.Navigator
-      drawerContent={CustomDrawer}
-      initialRouteName="Dashboard"
-      // useLegacyImplementation={false}
+      drawerContent={DrawerContent}
+      initialRouteName="Tabs"
       screenOptions={{
         headerShown: true,
         headerStyle: {
-          // fontFamily: 'RubikMedium',
           backgroundColor: theme.headerBackgroundColor,
         },
         headerTintColor: theme.headerTextColor,
-        animation: 'none',
       }}>
-      {appScreens.map((tab, index) => (
-        <Drawer.Screen
-          name={tab.name}
-          key={`${(tab.name, index)}`}
-          component={tab.component}
-        />
-      ))}
-      <Drawer.Screen name="Dashboard" component={BottomTabs} />
+      <Drawer.Screen name="Home" component={HomeScreen} />
+      <Drawer.Screen
+        name="Chat"
+        component={ChatScreen}
+        options={{headerShown: true, title: 'Chats'}}
+      />
+      <Drawer.Screen name="Settings" component={Settings} />
+      <Drawer.Screen name="Payment" component={Payment} />
+      {/* <Drawer.Screen name="Tabs" key={'tabs'} component={BottomTabs} /> */}
     </Drawer.Navigator>
   );
 };

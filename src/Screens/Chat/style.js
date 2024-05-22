@@ -6,14 +6,18 @@ export const getStyles = theme => {
       flex: 1,
       // height: '100%',
       backgroundColor: theme.backgroundColor,
-      paddingBottom: 80,
+    },
+    headerBox: {
+      backgroundColor: theme.headerBackgroundColor,
+      flex: 1,
+      // backgroundColor: 'red',
+      width: 330, //
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
     inputToolbar: {
-      //   width: '100%',
-      //   flex: 1,
-      //   alignItems: 'center',
       marginTop: 10,
-      //   marginBottom: 10,
       paddingHorizontal: 10,
       paddingVertical: 5,
       backgroundColor: theme.inputBackgroundColor,
@@ -44,11 +48,13 @@ export const getStyles = theme => {
     },
     sendButtonContainer: {
       //   backgroundColor: theme.buttonBackgroundColor,
-      width: 30,
+      // width: 30,
+      // minHeight: 32,
+      // backgroundColor: theme.buttonBackgroundColor,
       //   justifyContent: 'center', // Align icon vertically center
       //   paddingHorizontal: 10, // Add padding for proper spacing
       //   marginRight: -10,
-      marginBottom: 5,
+      // marginBottom: 10,
     },
     attachmentButtonContainer: {
       width: 30,

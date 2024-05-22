@@ -33,7 +33,7 @@ const Login = () => {
     //   // If unsuccessful, display an error message
     // }
 
-    navigation.navigate('Dashboard');
+    navigation.navigate('App');
   };
 
   const handleNavigate = () => {

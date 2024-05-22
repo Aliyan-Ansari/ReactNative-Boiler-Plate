@@ -85,7 +85,7 @@ const DrawerFileButton = ({styles}) => {
   );
 };
 
-const CustomDrawerHeader = () => {
+const CustomDrawerHeader = ({props}) => {
   const {isDarkMode} = useDarkMode();
   const theme = isDarkMode ? darkMode : lightMode;
   const [styles, setStyles] = useState(getStyles(theme));
@@ -123,7 +123,7 @@ const CustomDrawerHeader = () => {
   );
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} {...props}>
       <View>
         <DrawerFileButton styles={styles} isDarkMode={true} />
         <CustomText style={styles.chatGroup}>{excerpt('Today', 24)}</CustomText>
