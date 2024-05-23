@@ -5,6 +5,9 @@ import {getStyles} from './style';
 import Icon from 'react-native-vector-icons/FontAwesome'; // Import FontAwesome icons from vector-icons library
 import {useDarkMode} from '../../ThemeContext';
 import {darkMode, lightMode} from '../../theme/theme';
+import loginAnimation from './../../assets/login.json';
+import Animated, {FadeInDown, FadeInUp} from 'react-native-reanimated';
+import {Skottie} from 'react-native-skottie';
 
 const Login = () => {
   const navigation = useNavigation();
@@ -48,7 +51,14 @@ const Login = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Animated.View entering={FadeInUp.delay(300)}>
+        <Skottie
+          style={{width: 200, height: 200}}
+          source={loginAnimation}
+          autoPlay={true}
+        />
+      </Animated.View>
+      {/* <Text style={styles.title}>Login</Text> */}
       {error !== '' && <Text style={styles.error}>{error}</Text>}
       <View style={styles.inputContainer}>
         <Icon name="user" size={20} color="gray" style={styles.icon} />

@@ -7,6 +7,7 @@ export const getStyles = theme => {
       justifyContent: 'center',
       alignItems: 'center',
       backgroundColor: theme.backgroundColor,
+      marginTop: -50,
     },
     title: {
       fontSize: 24,
